@@ -10,6 +10,8 @@ first additional language students, based on:
     - Misc. comments such as additional reading required, or being a pleasure in class
 """
 
+# TODO: Query user for subject, if english, is it home or additional language? Use relevant Function
+
 import csv
 import random
 from pathlib import Path
@@ -23,7 +25,7 @@ csv_dir = cwd + r"\csv"
 txt_dir = cwd + r"\comment_output"
 comment_dir = cwd + r"\comment_input"
 
-# # File Variables
+# File Variables
 fail_file = comment_dir + r"\1_fail.txt"
 careful_file = comment_dir + r"\2_careful.txt"
 satisfactory_file = comment_dir + r"\3_satisfactory.txt"
@@ -35,7 +37,7 @@ attention_file = comment_dir + r"\8_attention.txt"
 disrupt_file = comment_dir + r"\9_disrupt.txt"
 reading_file = comment_dir + r"\10_read.txt"
 
-# Set empty variables to work with formatted strings
+# Initialise empty variables to work with formatted strings
 he_she = ""
 He_She = ""
 him_her = ""
@@ -44,6 +46,13 @@ His_Her = ""
 boy_girl = ""
 assignment_name = ""
 student_name = ""
+
+# # Main function
+# def main():
+#     # TODO: add main function code
+
+# TODO: Break script into manageable helper functions
+# Helper Functions
 
 
 # Calls a random line from the chosen comment file.
@@ -209,3 +218,8 @@ while sub_index < len(subfolder_name):
         os.remove(file)
     workbook.close()
     sub_index += 1
+
+# TODO: Uncomment once main function works
+# # Run main program
+# if __name__ == "__main__":
+#     main()
