@@ -17,20 +17,23 @@ import os
 import xlsxwriter
 
 # Variables for all the different files and folders that will be used to read and write data
-csv_dir = r"D:\PYTHON_SCRIPTS\Willa_Subject_Comments\SubjectComments\csv"
-txt_dir = r"D:\PYTHON_SCRIPTS\Willa_Subject_Comments\SubjectComments\comment_output"
-comment_dir = r"D:\PYTHON_SCRIPTS\Willa_Subject_Comments\SubjectComments\comment_input"
-# File Variables
-fail_file = comment_dir + "\\1_fail.txt"
-careful_file = comment_dir + "\\2_careful.txt"
-satisfactory_file = comment_dir + "\\3_satisfactory.txt"
-good_file = comment_dir + "\\4_good.txt"
-excellent_file = comment_dir + "\\5_excellent.txt"
-assessment_file = comment_dir + "\\6_assessmentfail.txt"
-pleasure_file = comment_dir + "\\7_pleasure.txt"
-attention_file = comment_dir + "\\8_attention.txt"
-disrupt_file = comment_dir + "\\9_disrupt.txt"
-reading_file = comment_dir + "\\10_read.txt"
+# Set the current working directory to the folder in which the file is contained
+cwd = os.getcwd()
+csv_dir = cwd + r"\csv"
+txt_dir = cwd + r"\comment_output"
+comment_dir = cwd + r"\comment_input"
+
+# # File Variables
+fail_file = comment_dir + r"\1_fail.txt"
+careful_file = comment_dir + r"\2_careful.txt"
+satisfactory_file = comment_dir + r"\3_satisfactory.txt"
+good_file = comment_dir + r"\4_good.txt"
+excellent_file = comment_dir + r"\5_excellent.txt"
+assessment_file = comment_dir + r"\6_assessmentfail.txt"
+pleasure_file = comment_dir + r"\7_pleasure.txt"
+attention_file = comment_dir + r"\8_attention.txt"
+disrupt_file = comment_dir + r"\9_disrupt.txt"
+reading_file = comment_dir + r"\10_read.txt"
 
 # Set empty variables to work with formatted strings
 he_she = ""
@@ -40,6 +43,7 @@ his_her = ""
 His_Her = ""
 boy_girl = ""
 assignment_name = ""
+student_name = ""
 
 
 # Calls a random line from the chosen comment file.
