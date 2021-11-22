@@ -1,31 +1,31 @@
-{student_name} achieved good marks in English. Well done! 
-{student_name} achieved good marks in English. Keep it up! 
-{student_name} achieved good marks in English. Keep up the good work! 
-{student_name} achieved good marks in English. You are a star! 
-Good marks were achieved by {student_name}, well done! 
-Good marks were achieved by {student_name}, keep it up! 
-Good marks were achieved by {student_name}, keep up the good work! 
-Good marks were achieved by {student_name}, you are a star! 
-I am pleased with {student_name}'s good marks in English. Well done! 
-I am pleased with {student_name}'s good marks in English. Keep it up! 
-I am pleased with {student_name}'s good marks in English. Keep up the good work! 
-I am pleased with {student_name}'s good marks in English. You are a star! 
-I am very impressed with {student_name}'s good English marks. Well done! 
-I am very impressed with {student_name}'s good English marks. Keep it up! 
-I am very impressed with {student_name}'s good English marks. Keep up the good work! 
-I am very impressed with {student_name}'s good English marks. You are a star! 
-I am very pleased with {student_name}'s good English marks. Well done! 
-I am very pleased with {student_name}'s good English marks. Keep it up! 
-I am very pleased with {student_name}'s good English marks. Keep up the good work! 
-I am very pleased with {student_name}'s good English marks. You are a star! 
-You can be proud of {student_name}'s good English marks. Well done! 
-You can be proud of {student_name}'s good English marks. Keep it up! 
-You can be very proud of {student_name}'s good English marks. Well done! 
-You can be very proud of {student_name}'s good English marks. Keep it up! 
-{student_name} has earned good marks in English. Well done! 
-{student_name} has earned good marks in English. Keep it up! 
-{student_name} has earned good marks in English. Keep up the good work! 
-{student_name} has earned good marks in English. You are a star! 
+{sname} achieved good marks in English. Well done! 
+{sname} achieved good marks in English. Keep it up! 
+{sname} achieved good marks in English. Keep up the good work! 
+{sname} achieved good marks in English. You are a star! 
+Good marks were achieved by {sname}, well done! 
+Good marks were achieved by {sname}, keep it up! 
+Good marks were achieved by {sname}, keep up the good work! 
+Good marks were achieved by {sname}, you are a star! 
+I am pleased with {sname}'s good marks in English. Well done! 
+I am pleased with {sname}'s good marks in English. Keep it up! 
+I am pleased with {sname}'s good marks in English. Keep up the good work! 
+I am pleased with {sname}'s good marks in English. You are a star! 
+I am very impressed with {sname}'s good English marks. Well done! 
+I am very impressed with {sname}'s good English marks. Keep it up! 
+I am very impressed with {sname}'s good English marks. Keep up the good work! 
+I am very impressed with {sname}'s good English marks. You are a star! 
+I am very pleased with {sname}'s good English marks. Well done! 
+I am very pleased with {sname}'s good English marks. Keep it up! 
+I am very pleased with {sname}'s good English marks. Keep up the good work! 
+I am very pleased with {sname}'s good English marks. You are a star! 
+You can be proud of {sname}'s good English marks. Well done! 
+You can be proud of {sname}'s good English marks. Keep it up! 
+You can be very proud of {sname}'s good English marks. Well done! 
+You can be very proud of {sname}'s good English marks. Keep it up! 
+{sname} has earned good marks in English. Well done! 
+{sname} has earned good marks in English. Keep it up! 
+{sname} has earned good marks in English. Keep up the good work! 
+{sname} has earned good marks in English. You are a star! 
 
 
 

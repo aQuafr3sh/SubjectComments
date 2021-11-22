@@ -1,18 +1,22 @@
 """
 Created by:    Philip van Schalkwyk
 Contact:       philiplvans@gmail.com
-Last updated:  2021-11-16
+Last updated:  2021-11-22
 
 This script is used to automatically generate subject comments for English
 first additional language students, based on:
     - Task Scores
     - Final quarter mark
     - Misc. comments such as additional reading required, or being a pleasure in class
+In this branch, we will attempt to use Pandas to read the CSV file
 """
 
+# TODO: Load CSV data into a Pandas dataframe
+# TODO: Iterate over a Pandas dataframe to read the data and make decisions
 # TODO: Query user for subject, if english, is it home or additional language? Use relevant Function
 
 import csv
+import pandas as pd
 import random
 from pathlib import Path
 import os
@@ -45,48 +49,66 @@ his_her = ""
 His_Her = ""
 boy_girl = ""
 assignment_name = ""
-student_name = ""
+sname = ""
+
+
+def random_line(fname,s_name_p):
+    with open(fname) as in_file:
+        lines = in_file.read().splitlines()
+        return random.choice(lines).format(sname=s_name_p,
+                                           he_she="he",
+                                           He_She="He",
+                                           his_her="his",
+                                           him_her="him")
 
 
 # Main function
 # TODO: add main function code
+# TODO: P1 - Cleanup functions - Random function to take more parameters
+# TODO: P1 - Add gender for general comments
 def main():
-    # Iterate through each CSV file in die CSV directory and create a new directory
-    # where comments will be stored based on the CSV file name
     for file in Path(csv_dir).glob("*.csv"):
         with open(file, encoding="ISO-8859-1", mode='r') as csv_file:
             class_path = file.name[:-4]
+            df = pd.read_csv(csv_file, header=0, encoding="ISO-8859-1")
+            print(df)
+            number_index = int(df.columns.get_loc("Number"))
+            first_assignment = int(df.columns.get_loc("Number"))+1
+            final_index = int(df.columns.get_loc("FINAL"))
+
+            print(number_index)
+            print(first_assignment)
+            print(final_index)
+
             if not os.path.exists(txt_dir + f"\\{class_path}"):
                 os.mkdir(txt_dir + f"\\{class_path}")
+
+            for i, row in df.iterrows():
+                with open(txt_dir + f"\\{class_path}" + f"\\{row[1]}_{row[2]}_{row[number_index]}.txt", "w") as text_file:
+                    sname = row[2]
+                    if str(row[-1]) == "A":
+                        text_file.write("!!!NO FINAL MARK!!! - ")
+                    elif float(row[-1]) < .4:
+                        text_file.write(random_line(fail_file, sname))
+                    elif float(row[-1]) < .5:
+                        text_file.write(random_line(careful_file, sname))
+                    elif float(row[-1]) < .6:
+                        text_file.write(random_line(satisfactory_file, sname))
+                    elif float(row[-1]) < .8:
+                        text_file.write(random_line(good_file, sname))
+                    else:
+                        text_file.write(random_line(excellent_file,sname))
 
 
 # Helper Functions
 # TODO: Break script into manageable helper functions
 # TODO:  Create function to parse Excel filename to determine subject
 
+
 # Calls a random line from the chosen comment file.
 # Formatted variables are defined for interaction within text file
-def random_line(fname):
-    with open(fname) as in_file:
-        lines = in_file.read().splitlines()
-        return random.choice(lines).format(student_name=student_name,
-                                           he_she=he_she,
-                                           He_She=He_She,
-                                           him_her=him_her,
-                                           his_her=his_her,
-                                           His_Her=His_Her,
-                                           boy_girl=boy_girl,
-                                           assignment_name=assignment_name)
 
 
-# # Iterate through each CSV file in die CSV directory and create a new directory where comments will be stored
-# # based on the CSV file name
-# for file in Path(csv_dir).glob("*.csv"):
-#     with open(file, encoding="ISO-8859-1", mode='r') as csv_file:
-#         class_path = file.name[:-4]
-#         if not os.path.exists(txt_dir + f"\\{class_path}"):
-#             os.mkdir(txt_dir + f"\\{class_path}")
-#
 #         # Create two lists from the CSV files
 #         csv_reader = csv.reader(csv_file)
 #         fields = csv_reader.__next__()  # isolates fields from the rest of the data

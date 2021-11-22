@@ -1,25 +1,25 @@
-{student_name} achieved satisfactory marks in English. 
-Satisfactory marks for English has been achieved by {student_name}. 
-Satisfactory marks for English was achieved by {student_name}. 
-{student_name}'s work for English is satisfactory. 
-{student_name} produced satisfactory work for English. 
-Although {student_name} produced satisfactory work for English this term, {he_she} has the ability to do better. 
-Although {student_name} produced satisfactory work for English this term, {he_she} has the ability to perform better. 
-Although {student_name} produced satisfactory work for English this term, {he_she} has the ability to do much better. 
-Although {student_name} produced satisfactory work for English this term, {he_she} has the ability to perform much better. 
-{student_name} achieved satisfactory marks in English, but {he_she} has the ability to do better. 
-{student_name} achieved satisfactory marks in English, but {he_she} has the ability to perform better. 
-{student_name} achieved satisfactory marks in English, but {he_she} has the potential to do better. 
-{student_name} achieved satisfactory marks in English, but {he_she} has the potential to perform better. 
-{student_name} achieved satisfactory marks in English, but {he_she} can work much harder in this subject. 
-{student_name} achieved satisfactory marks in English, but {he_she} can work even harder in this subject. 
-Satisfactory marks for English has been achieved by {student_name}, but {he_she} has the ability to do better. 
-Satisfactory marks for English has been achieved by {student_name}, but {he_she} has the ability to perform better. 
-Satisfactory marks for English has been achieved by {student_name}, but {he_she} has the potential to perform better. 
-Satisfactory marks for English has been achieved by {student_name}, but {he_she} can work much harder in this subject. 
-Satisfactory marks for English has been achieved by {student_name}, but {he_she} can work even harder in this subject. 
-Satisfactory marks for English has been achieved by {student_name}, but {he_she} has the potential to do better. 
-{student_name}'s work for English is satisfactory, but I believe that {he_she} can do even better in the subject. 
-{student_name}'s work for English is satisfactory, but I believe that {he_she} can perform even better in the subject. 
-{student_name}'s work for English is satisfactory, but {he_she} can work much harder in this subject. 
-{student_name}'s work for English is satisfactory, but {he_she} can work even harder in this subject. 
+{sname} achieved satisfactory marks in English. 
+Satisfactory marks for English has been achieved by {sname}. 
+Satisfactory marks for English was achieved by {sname}. 
+{sname}'s work for English is satisfactory. 
+{sname} produced satisfactory work for English. 
+Although {sname} produced satisfactory work for English this term, {he_she} has the ability to do better. 
+Although {sname} produced satisfactory work for English this term, {he_she} has the ability to perform better. 
+Although {sname} produced satisfactory work for English this term, {he_she} has the ability to do much better. 
+Although {sname} produced satisfactory work for English this term, {he_she} has the ability to perform much better. 
+{sname} achieved satisfactory marks in English, but {he_she} has the ability to do better. 
+{sname} achieved satisfactory marks in English, but {he_she} has the ability to perform better. 
+{sname} achieved satisfactory marks in English, but {he_she} has the potential to do better. 
+{sname} achieved satisfactory marks in English, but {he_she} has the potential to perform better. 
+{sname} achieved satisfactory marks in English, but {he_she} can work much harder in this subject. 
+{sname} achieved satisfactory marks in English, but {he_she} can work even harder in this subject. 
+Satisfactory marks for English has been achieved by {sname}, but {he_she} has the ability to do better. 
+Satisfactory marks for English has been achieved by {sname}, but {he_she} has the ability to perform better. 
+Satisfactory marks for English has been achieved by {sname}, but {he_she} has the potential to perform better. 
+Satisfactory marks for English has been achieved by {sname}, but {he_she} can work much harder in this subject. 
+Satisfactory marks for English has been achieved by {sname}, but {he_she} can work even harder in this subject. 
+Satisfactory marks for English has been achieved by {sname}, but {he_she} has the potential to do better. 
+{sname}'s work for English is satisfactory, but I believe that {he_she} can do even better in the subject. 
+{sname}'s work for English is satisfactory, but I believe that {he_she} can perform even better in the subject. 
+{sname}'s work for English is satisfactory, but {he_she} can work much harder in this subject. 
+{sname}'s work for English is satisfactory, but {he_she} can work even harder in this subject. 
