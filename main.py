@@ -1,7 +1,7 @@
 """
 Created by:    Philip van Schalkwyk
 Contact:       philiplvans@gmail.com
-Last updated:  2021-11-22
+Last updated:  2021-11-23
 
 This script is used to automatically generate subject comments for English
 first additional language students, based on:
@@ -11,8 +11,6 @@ first additional language students, based on:
 In this branch, we will attempt to use Pandas to read the CSV file
 """
 
-# TODO: Load CSV data into a Pandas dataframe
-# TODO: Iterate over a Pandas dataframe to read the data and make decisions
 # TODO: Query user for subject, if english, is it home or additional language? Use relevant Function
 
 import csv
@@ -30,83 +28,86 @@ txt_dir = cwd + r"\comment_output"
 comment_dir = cwd + r"\comment_input"
 
 # File Variables
-fail_file = comment_dir + r"\1_fail.txt"
-careful_file = comment_dir + r"\2_careful.txt"
-satisfactory_file = comment_dir + r"\3_satisfactory.txt"
-good_file = comment_dir + r"\4_good.txt"
-excellent_file = comment_dir + r"\5_excellent.txt"
-assessment_file = comment_dir + r"\6_assessmentfail.txt"
-pleasure_file = comment_dir + r"\7_pleasure.txt"
-attention_file = comment_dir + r"\8_attention.txt"
-disrupt_file = comment_dir + r"\9_disrupt.txt"
-reading_file = comment_dir + r"\10_read.txt"
-
-# Initialise empty variables to work with formatted strings
-he_she = ""
-He_She = ""
-him_her = ""
-his_her = ""
-His_Her = ""
-boy_girl = ""
-assignment_name = ""
-sname = ""
-
-
-def random_line(fname,s_name_p):
-    with open(fname) as in_file:
-        lines = in_file.read().splitlines()
-        return random.choice(lines).format(sname=s_name_p,
-                                           he_she="he",
-                                           He_She="He",
-                                           his_her="his",
-                                           him_her="him")
-
+fail_f = comment_dir + r"\1_fail.txt"
+care_f = comment_dir + r"\2_careful.txt"
+satisfied_f = comment_dir + r"\3_satisfactory.txt"
+good_f = comment_dir + r"\4_good.txt"
+excel_f = comment_dir + r"\5_excellent.txt"
+ass_f = comment_dir + r"\6_assessmentfail.txt"
+pleasure_f = comment_dir + r"\7_pleasure.txt"
+attention_f = comment_dir + r"\8_attention.txt"
+disrupt_f = comment_dir + r"\9_disrupt.txt"
+read_f = comment_dir + r"\10_read.txt"
 
 # Main function
 # TODO: add main function code
 # TODO: P1 - Cleanup functions - Random function to take more parameters
-# TODO: P1 - Add gender for general comments
+# TODO: Add check gender function
+# TODO: Add functions to return the correct pronouns depending on gender
+# TODO: Parse filename to determine subject and level
+
+
 def main():
     for file in Path(csv_dir).glob("*.csv"):
-        with open(file, encoding="ISO-8859-1", mode='r') as csv_file:
-            class_path = file.name[:-4]
-            df = pd.read_csv(csv_file, header=0, encoding="ISO-8859-1")
-            print(df)
-            number_index = int(df.columns.get_loc("Number"))
-            first_assignment = int(df.columns.get_loc("Number"))+1
-            final_index = int(df.columns.get_loc("FINAL"))
+        class_path = file.name[:-4]
+        df = pd.read_csv(file, header=0, encoding="ISO-8859-1")
 
-            print(number_index)
-            print(first_assignment)
-            print(final_index)
+        first_assignment = int(df.columns.get_loc("Number"))+1
+        final_index = int(df.columns.get_loc("FINAL"))
 
-            if not os.path.exists(txt_dir + f"\\{class_path}"):
-                os.mkdir(txt_dir + f"\\{class_path}")
+        if not os.path.exists(f"{txt_dir}\\{class_path}"):
+            os.mkdir(f"{txt_dir}\\{class_path}")
 
-            for i, row in df.iterrows():
-                with open(txt_dir + f"\\{class_path}" + f"\\{row[1]}_{row[2]}_{row[number_index]}.txt", "w") as text_file:
-                    sname = row[2]
-                    if str(row[-1]) == "A":
-                        text_file.write("!!!NO FINAL MARK!!! - ")
-                    elif float(row[-1]) < .4:
-                        text_file.write(random_line(fail_file, sname))
-                    elif float(row[-1]) < .5:
-                        text_file.write(random_line(careful_file, sname))
-                    elif float(row[-1]) < .6:
-                        text_file.write(random_line(satisfactory_file, sname))
-                    elif float(row[-1]) < .8:
-                        text_file.write(random_line(good_file, sname))
-                    else:
-                        text_file.write(random_line(excellent_file,sname))
+        for row in df.itertuples(index=False):
+            with open(f"{txt_dir}\\{class_path}\\{row.Surname}_{row.Nickname}_{row.Number}.txt", "w") as text_file:
+                sname = row.Nickname
+                # Check gender of student
+                if str(row.Sex).upper() == "M":
+                    he_she = "he"
+                    He_She = "He"
+                    him_her = "him"
+                    his_her = "his"
+                    His_Her = "His"
+                    boy_girl = "boy"
+                else:
+                    he_she = "she"
+                    He_She = "She"
+                    him_her = "her"
+                    his_her = "her"
+                    His_Her = "Her"
+                    boy_girl = "girl"
+
+                if str(row.FINAL) == "A":
+                    text_file.write("!!!NO FINAL MARK!!! - ")
+                elif float(row.FINAL) < .4:
+                    text_file.write(rand_line(fail_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl))
+                elif float(row.FINAL) < .5:
+                    text_file.write(rand_line(care_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl))
+                elif float(row.FINAL) < .6:
+                    text_file.write(rand_line(satisfied_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl))
+                elif float(row.FINAL) < .8:
+                    text_file.write(rand_line(good_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl))
+                else:
+                    text_file.write(rand_line(excel_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl))
 
 
 # Helper Functions
 # TODO: Break script into manageable helper functions
 # TODO:  Create function to parse Excel filename to determine subject
 
-
 # Calls a random line from the chosen comment file.
 # Formatted variables are defined for interaction within text file
+def rand_line(f_name, s_name_p, he_she_p, He_She_p, his_her_p, His_Her_p, him_her_p, boy_girl_p, ass_name_p=""):
+    with open(f_name) as in_file:
+        lines = in_file.read().splitlines()
+        return random.choice(lines).format(sname=s_name_p,
+                                           he_she=he_she_p,
+                                           He_She=He_She_p,
+                                           his_her=his_her_p,
+                                           His_Her=His_Her_p,
+                                           him_her=him_her_p,
+                                           boy_girl=boy_girl_p,
+                                           ass_name=ass_name_p)
 
 
 #         # Create two lists from the CSV files
