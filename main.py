@@ -1,7 +1,7 @@
 """
 Created by:    Philip van Schalkwyk
 Contact:       philiplvans@gmail.com
-Last updated:  2021-11-25
+Last updated:  2021-11-29
 
 This script is used to automatically generate subject comments for English
 first additional language students, based on:
@@ -76,12 +76,18 @@ def main():
                 # TODO: If statement to calc different % for FAL and HL
                 gen_eng_fal(row.FINAL, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
 
-                # Iterate through data in the Pandas dataframe and create comments for failed assignments
-
+                # Create comments for failed assignments
                 fail_task(f_task, f_index, df, row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
 
+                # Functions for other general comments, e.g.
+                # Pleasure in class, read more, disruptive, need to pay more attention
+                pleas_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
+                atten_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
+                disrupt_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
+                read_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
+
+
 # Helper Functions
-# TODO: Break script into manageable helper functions
 # TODO:  Create function to parse Excel filename to determine subject
 
 
@@ -158,6 +164,28 @@ def fail_task(f_task, f_index, df, row, txt_f, sname, he_she, He_She, his_her, H
         assignment_count += 1
 
 
+# Functions for other general comments.
+# More functions can be added later if it is required
+def pleas_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl):
+    if str(row.Pleasure).upper() == "X":
+        txt_f.write(rand_line(PLEASURE_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl))
+
+
+def atten_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl):
+    if str(row.Attention).upper() == "X":
+        txt_f.write(rand_line(ATT_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl))
+
+
+def disrupt_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl):
+    if str(row.Disruption).upper() == "X":
+        txt_f.write(rand_line(DISRUPT_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl))
+
+
+def read_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl):
+    if str(row.Read).upper() == "X":
+        txt_f.write(rand_line(DISRUPT_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl))
+
+
 # Calls a random line from the chosen comment file.
 # Formatted variables are defined for interaction within text file
 def rand_line(f_name, s_name_p, he_she_p, He_She_p, his_her_p, His_Her_p, him_her_p, boy_girl_p, ass_name_p=""):
@@ -172,78 +200,6 @@ def rand_line(f_name, s_name_p, he_she_p, He_She_p, his_her_p, His_Her_p, him_he
                                            boy_girl=boy_girl_p,
                                            ass_name=ass_name_p)
 
-
-#
-#         # Figure out how to let the functions work - later
-#         # category_comment(4, pleasure_file)
-#         # category_comment(5, attention_file)
-#         # category_comment(6, disrupt_file)
-#         # category_comment(7, reading_file)
-#
-#         # Other observation comments
-#         student_count = 0
-#         while student_count < len(data_list):
-#             single_student = (data_list[student_count])
-#             student_name = single_student[2]
-#             He_She = "He" if str(single_student[3]).upper() == "M" else "She"
-#             he_she = "he" if str(single_student[3]).upper() == "M" else "she"
-#             him_her = "him" if str(single_student[3]).upper() == "M" else "her"
-#             his_her = "his" if str(single_student[3]).upper() == "M" else "her"
-#             His_Her = "His" if str(single_student[3]).upper() == "M" else "Her"
-#             boy_girl = "boy" if str(single_student[3]).upper() == "M" else "girl"
-#             if str(single_student[4]).upper() == "X":
-#                 with open(txt_dir + f"\\{class_path}" + f"\\{single_student[1]}_{single_student[2]}_"
-#                                                         f"{single_student[number_index]}.txt", 'a+') as text_file:
-#                     text_file.write(random_line(pleasure_file))
-#             student_count += 1
-#
-#             student_count = 0
-#             while student_count < len(data_list):
-#                 single_student = (data_list[student_count])
-#                 student_name = single_student[2]
-#                 He_She = "He" if str(single_student[3]).upper() == "M" else "She"
-#                 he_she = "he" if str(single_student[3]).upper() == "M" else "she"
-#                 him_her = "him" if str(single_student[3]).upper() == "M" else "her"
-#                 his_her = "his" if str(single_student[3]).upper() == "M" else "her"
-#                 His_Her = "His" if str(single_student[3]).upper() == "M" else "Her"
-#                 boy_girl = "boy" if str(single_student[3]).upper() == "M" else "girl"
-#                 if str(single_student[5]).upper() == "X":
-#                     with open(txt_dir + f"\\{class_path}" + f"\\{single_student[1]}_{single_student[2]}_"
-#                                                             f"{single_student[number_index]}.txt", 'a+') as text_file:
-#                         text_file.write(random_line(attention_file))
-#                 student_count += 1
-#
-#             student_count = 0
-#             while student_count < len(data_list):
-#                 single_student = (data_list[student_count])
-#                 student_name = single_student[2]
-#                 He_She = "He" if str(single_student[3]).upper() == "M" else "She"
-#                 he_she = "he" if str(single_student[3]).upper() == "M" else "she"
-#                 him_her = "him" if str(single_student[3]).upper() == "M" else "her"
-#                 his_her = "his" if str(single_student[3]).upper() == "M" else "her"
-#                 His_Her = "His" if str(single_student[3]).upper() == "M" else "Her"
-#                 boy_girl = "boy" if str(single_student[3]).upper() == "M" else "girl"
-#                 if str(single_student[6]).upper() == "X":
-#                     with open(txt_dir + f"\\{class_path}" + f"\\{single_student[1]}_{single_student[2]}_"
-#                                                             f"{single_student[number_index]}.txt", 'a+') as text_file:
-#                         text_file.write(random_line(disrupt_file))
-#                 student_count += 1
-#
-#             student_count = 0
-#             while student_count < len(data_list):
-#                 single_student = (data_list[student_count])
-#                 student_name = single_student[2]
-#                 He_She = "He" if str(single_student[3]).upper() == "M" else "She"
-#                 he_she = "he" if str(single_student[3]).upper() == "M" else "she"
-#                 him_her = "him" if str(single_student[3]).upper() == "M" else "her"
-#                 his_her = "his" if str(single_student[3]).upper() == "M" else "her"
-#                 His_Her = "His" if str(single_student[3]).upper() == "M" else "Her"
-#                 boy_girl = "boy" if str(single_student[3]).upper() == "M" else "girl"
-#                 if str(single_student[7]).upper() == "X":
-#                     with open(txt_dir + f"\\{class_path}" + f"\\{single_student[1]}_{single_student[2]}_"
-#                                                             f"{single_student[number_index]}.txt", 'a+') as text_file:
-#                         text_file.write(random_line(reading_file))
-#                 student_count += 1
 #
 # # Write outputs to an excel file and delete the intermediate TXT data
 # subfolder_name = [f.name for f in os.scandir(txt_dir) if f.is_dir()]
