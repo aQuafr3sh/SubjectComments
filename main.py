@@ -39,12 +39,11 @@ ATT_F = COMMENT_DIR + r"\8_attention.txt"
 DISRUPT_F = COMMENT_DIR + r"\9_disrupt.txt"
 READ_F = COMMENT_DIR + r"\10_read.txt"
 
+
 # Main function
 # TODO: add main function code
-# TODO: P1 - Cleanup functions - Random function to take more parameters
-# TODO: Add check gender function
+# TODO: P1 - Cleanup functions
 # TODO: Add functions to return the correct pronouns depending on gender
-# TODO: Parse filename to determine subject and level
 
 
 def main():
@@ -54,7 +53,7 @@ def main():
         df = csv_to_dataframe(file)
 
         # Create variables to point to the locations of the first assignment and the final mark
-        first_assignment = int(df.columns.get_loc("Number"))+1
+        first_assignment = int(df.columns.get_loc("Number")) + 1
         final_index = int(df.columns.get_loc("FINAL"))
 
         # Check whether output directory exists, create it if it does not exist
@@ -62,7 +61,9 @@ def main():
 
         # Iterate through the data in the Pandas dataframe and create subject comments based on specified criteria
         for row in df.itertuples(index=False):
-            with open(f"{TXT_DIR}\\{class_path}\\{row.Surname}_{row.Nickname}_{row.Number}.txt", "w") as text_file:
+            txt_file_s = txt_file_string(TXT_DIR, class_path, row.Surname, row.Nickname, row.Number)
+            print(txt_file_s)
+            with open(txt_file_s, 'a+') as text_file:
                 sname = row.Nickname
                 # Check gender of student and assign correct pronouns
                 boy_girl = pn_boy_girl(str(row.Sex).upper())
@@ -72,12 +73,29 @@ def main():
                 his_her = pn_his_her(str(row.Sex).upper())
                 His_Her = pn_His_Her(str(row.Sex).upper())
 
+                # TODO: Parse filename to determine subject and level
+                # TODO: If statement to calc different % for FAL and HL
                 gen_eng_fal(row.FINAL, text_file, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
 
+                # Iterate through data in the Pandas dataframe and create comments for failed assignments
+                assignment_count = first_assignment
+                while assignment_count < final_index:
+                    ass_name = str(df.columns[assignment_count])
+                    if str(row[assignment_count]) == "A":
+                        pass
+                    elif float(row[assignment_count]) < .4:
+                        text_file.write(rand_line(ASS_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl, ass_name))
+                    assignment_count += 1
 
 # Helper Functions
 # TODO: Break script into manageable helper functions
 # TODO:  Create function to parse Excel filename to determine subject
+
+
+# Function to create text file string
+def txt_file_string(txt_dir_p, class_path_p, surname_p, nickname_p, number_p):
+    return str(f"{txt_dir_p}\\{class_path_p}\\{surname_p}_{nickname_p}_{number_p}.txt")
+
 
 # Several functions to output pronouns based on gender marked in spreadsheet
 def pn_boy_girl(gender_p):
@@ -150,54 +168,6 @@ def rand_line(f_name, s_name_p, he_she_p, He_She_p, his_her_p, His_Her_p, him_he
                                            ass_name=ass_name_p)
 
 
-#         # Create two lists from the CSV files
-#         csv_reader = csv.reader(csv_file)
-#         fields = csv_reader.__next__()  # isolates fields from the rest of the data
-#         data_list = list(csv_reader)  # Create list of CSV file
-#         # The number index is important - it is the last field before assignments are listed
-#         # Use this index to determine the indexes of all other assignments
-#         number_index = fields.index("Number")
-#         first_assessment = fields.index("Number") + 1
-#         final_index = fields.index("FINAL")
-#
-#         # General performance comments
-#         for row in data_list:
-#             with open(txt_dir + f"\\{class_path}" + f"\\{row[1]}_{row[2]}_{row[number_index]}.txt", "w") as text_file:
-#                 student_name = row[2]
-#                 if str(row[-1]) == "A":
-#                     text_file.write("!!!NO FINAL MARK!!! - ")
-#                 elif float(row[-1]) < .4:
-#                     text_file.write(random_line(fail_file))
-#                 elif float(row[-1]) < .5:
-#                     text_file.write(random_line(careful_file))
-#                 elif float(row[-1]) < .6:
-#                     text_file.write(random_line(satisfactory_file))
-#                 elif float(row[-1]) < .8:
-#                     text_file.write(random_line(good_file))
-#                 else:
-#                     text_file.write(random_line(excellent_file))
-#
-#         # Failed assignment comments
-#         student_count = 0
-#         while student_count < len(data_list):
-#             single_student = (data_list[student_count])
-#             assignment_count = first_assessment
-#             while assignment_count < final_index:
-#                 assignment_name = fields[assignment_count]
-#                 student_name = single_student[2]
-#                 He_She = "He" if str(single_student[3]).upper() == "M" else "She"
-#                 he_she = "he" if str(single_student[3]).upper() == "M" else "she"
-#                 him_her = "him" if str(single_student[3]).upper() == "M" else "her"
-#                 his_her = "his" if str(single_student[3]).upper() == "M" else "her"
-#                 His_Her = "His" if str(single_student[3]).upper() == "M" else "Her"
-#                 if str(single_student[assignment_count]) == "A":
-#                     pass
-#                 elif float(single_student[assignment_count]) < .4:
-#                     with open(txt_dir + f"\\{class_path}" + f"\\{single_student[1]}_{single_student[2]}_"
-#                                                             f"{single_student[number_index]}.txt", 'a+') as text_file:
-#                         text_file.write(random_line(assessment_file))
-#                 assignment_count += 1
-#             student_count += 1
 #
 #         # Figure out how to let the functions work - later
 #         # category_comment(4, pleasure_file)
