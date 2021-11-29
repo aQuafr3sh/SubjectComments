@@ -13,7 +13,6 @@ In this branch, we will attempt to use Pandas to read the CSV file
 
 # TODO: Query user for subject, if english, is it home or additional language? Use relevant Function
 
-import csv
 import pandas as pd
 import random
 from pathlib import Path
@@ -42,8 +41,6 @@ READ_F = COMMENT_DIR + r"\10_read.txt"
 
 # Main function
 # TODO: Investigate proper variable name best practices and refactor code
-# TODO: add main function code
-# TODO: P1 - Cleanup functions
 
 def main():
     # Iterate through CSV files in input directory
@@ -61,7 +58,6 @@ def main():
         # Iterate through the data in the Pandas dataframe and create subject comments based on specified criteria
         for row in df.itertuples(index=False):
             txt_file_s = txt_file_string(TXT_DIR, class_path, row.Surname, row.Nickname, row.Number)
-            print(txt_file_s)
             with open(txt_file_s, 'a+') as txt_f:
                 sname = row.Nickname
                 # Check gender of student and assign correct pronouns
@@ -86,6 +82,10 @@ def main():
                 disrupt_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
                 read_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
 
+    # Write outputs to an excel file and delete the intermediate TXT data
+    subfolder_name = [f.name for f in os.scandir(TXT_DIR) if f.is_dir()]
+    subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
+    txt_to_xls(subfolder_name, subfolder_path)
 
 # Helper Functions
 # TODO:  Create function to parse Excel filename to determine subject
@@ -200,27 +200,26 @@ def rand_line(f_name, s_name_p, he_she_p, He_She_p, his_her_p, His_Her_p, him_he
                                            boy_girl=boy_girl_p,
                                            ass_name=ass_name_p)
 
-#
-# # Write outputs to an excel file and delete the intermediate TXT data
-# subfolder_name = [f.name for f in os.scandir(txt_dir) if f.is_dir()]
-# subfolder_path = [f.path for f in os.scandir(txt_dir) if f.is_dir()]
-#
-# sub_index = 0
-# while sub_index < len(subfolder_name):
-#     row = 0
-#     col = 0
-#     workbook = xlsxwriter.Workbook(subfolder_path[sub_index] + f"\\{subfolder_name[sub_index]}.xlsx")
-#     worksheet = workbook.add_worksheet()
-#     worksheet.set_column("A:A", 40)
-#     worksheet.set_column("B:B", 200)
-#     for file in Path(subfolder_path[sub_index]).glob("*.txt"):
-#         with open(file, encoding="ISO-8859-1", mode="r") as txt_file:
-#             worksheet.write(row, col, file.name[:-4])
-#             worksheet.write(row, col + 1, file.read_text())
-#             row += 1
-#         os.remove(file)
-#     workbook.close()
-#     sub_index += 1
+
+# Function to write output to XLSX file and remove TXT files
+def txt_to_xls(subname, subpath):
+    sub_index = 0
+    while sub_index < len(subname):
+        row = 0
+        col = 0
+        workbook = xlsxwriter.Workbook(f"{subpath[sub_index]}\\{subname[sub_index]}.xlsx")
+        worksheet = workbook.add_worksheet()
+        worksheet.set_column("A:A", 40)
+        worksheet.set_column("B:B", 200)
+        for file in Path(subpath[sub_index]).glob("*.txt"):
+            with open(file, encoding="ISO-8859-1", mode="r") as txt_file:
+                worksheet.write(row, col, file.name[:-4])
+                worksheet.write(row, col + 1, file.read_text())
+                row += 1
+            os.remove(file)
+        workbook.close()
+        sub_index += 1
+
 
 # Run main program
 if __name__ == "__main__":
