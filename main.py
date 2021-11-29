@@ -41,10 +41,9 @@ READ_F = COMMENT_DIR + r"\10_read.txt"
 
 
 # Main function
+# TODO: Investigate proper variable name best practices and refactor code
 # TODO: add main function code
 # TODO: P1 - Cleanup functions
-# TODO: Add functions to return the correct pronouns depending on gender
-
 
 def main():
     # Iterate through CSV files in input directory
@@ -53,8 +52,8 @@ def main():
         df = csv_to_dataframe(file)
 
         # Create variables to point to the locations of the first assignment and the final mark
-        first_assignment = int(df.columns.get_loc("Number")) + 1
-        final_index = int(df.columns.get_loc("FINAL"))
+        f_task = int(df.columns.get_loc("Number")) + 1
+        f_index = int(df.columns.get_loc("FINAL"))
 
         # Check whether output directory exists, create it if it does not exist
         validate_output_directory(TXT_DIR, class_path)
@@ -63,7 +62,7 @@ def main():
         for row in df.itertuples(index=False):
             txt_file_s = txt_file_string(TXT_DIR, class_path, row.Surname, row.Nickname, row.Number)
             print(txt_file_s)
-            with open(txt_file_s, 'a+') as text_file:
+            with open(txt_file_s, 'a+') as txt_f:
                 sname = row.Nickname
                 # Check gender of student and assign correct pronouns
                 boy_girl = pn_boy_girl(str(row.Sex).upper())
@@ -75,17 +74,11 @@ def main():
 
                 # TODO: Parse filename to determine subject and level
                 # TODO: If statement to calc different % for FAL and HL
-                gen_eng_fal(row.FINAL, text_file, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
+                gen_eng_fal(row.FINAL, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
 
                 # Iterate through data in the Pandas dataframe and create comments for failed assignments
-                assignment_count = first_assignment
-                while assignment_count < final_index:
-                    ass_name = str(df.columns[assignment_count])
-                    if str(row[assignment_count]) == "A":
-                        pass
-                    elif float(row[assignment_count]) < .4:
-                        text_file.write(rand_line(ASS_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl, ass_name))
-                    assignment_count += 1
+
+                fail_task(f_task, f_index, df, row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
 
 # Helper Functions
 # TODO: Break script into manageable helper functions
@@ -151,6 +144,18 @@ def gen_eng_fal(f_mark_p, txt_f_p, sname_p, he_she_p, He_She_p, him_her_p, his_h
         txt_f_p.write(rand_line(GOOD_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
     else:
         txt_f_p.write(rand_line(EXCEL_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+
+
+# Function to determine whether student failed a task, writes output to file
+def fail_task(f_task, f_index, df, row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl):
+    assignment_count = f_task
+    while assignment_count < f_index:
+        ass_name = str(df.columns[assignment_count])
+        if str(row[assignment_count]) == "A":
+            pass
+        elif float(row[assignment_count]) < .4:
+            txt_f.write(rand_line(ASS_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl, ass_name))
+        assignment_count += 1
 
 
 # Calls a random line from the chosen comment file.
