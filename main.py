@@ -99,22 +99,9 @@ def main():
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
-    # Attach all files to mail and send it
-    # Create list of attachments to send
+    # Create list of attachments to send and send the mail
     attachment_list()
-
-    # Send the email
-    try:
-        # initializing the server connection
-        yag = yagmail.SMTP(user=s_mail, password=password)
-        # sending the email
-        yag.send(to=r_mail,
-                 subject=subject,
-                 contents=mail_body,
-                 attachments=ATTACH_LIST)
-        print("Email sent successfully")
-    except:
-        print("Error, email was not sent")
+    send_mail()
 
 
 # Helper Functions
@@ -280,6 +267,20 @@ def attachment_list():
             if file.endswith(".xlsx"):
                 ATTACH_LIST.append(os.path.join(root, file))
 
+
+# Function to send the email to the end-user
+def send_mail():
+    try:
+        # initializing the server connection
+        yag = yagmail.SMTP(user=s_mail, password=password)
+        # sending the email
+        yag.send(to=r_mail,
+                 subject=subject,
+                 contents=mail_body,
+                 attachments=ATTACH_LIST)
+        print("Email sent successfully")
+    except:
+        print("Error, email was not sent")
 
 # Run main program
 if __name__ == "__main__":
