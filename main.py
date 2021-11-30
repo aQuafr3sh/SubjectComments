@@ -19,12 +19,15 @@ Additional enhancements include:    - GUI
                                     - Email comments to user
                                     - Move processed files to "Archive" folder
 """
-
+# TODO: Email functionality
 import pandas as pd
 import random
 from pathlib import Path
 import os
 import xlsxwriter
+import yagmail
+from creds import *  # Used for mail address and password
+
 
 # Variables for all the different files and folders that will be used to read and write data
 # Set the current working directory to the folder in which the file is contained
@@ -93,6 +96,21 @@ def main():
     subfolder_name = [f.name for f in os.scandir(TXT_DIR) if f.is_dir()]
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
+
+    # Test sending email
+    # Create list of all XLS files to attach to the mail
+    # Attach all files to mail and send it
+    # TODO: Test Yagmail
+    try:
+        # initializing the server connection
+        yag = yagmail.SMTP(user=s_mail, password=password)
+        # sending the email
+        yag.send(to=r_mail,
+                 subject=subject,
+                 contents=mail_body)
+        print("Email sent successfully")
+    except:
+        print("Error, email was not sent")
 
 
 # Helper Functions
