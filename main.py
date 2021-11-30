@@ -48,6 +48,9 @@ ATT_F = COMMENT_DIR + r"\8_attention.txt"
 DISRUPT_F = COMMENT_DIR + r"\9_disrupt.txt"
 READ_F = COMMENT_DIR + r"\10_read.txt"
 
+# Mail Attachment List
+ATTACH_LIST = []
+
 
 # Main function
 # TODO: Investigate proper variable name best practices and refactor code
@@ -101,13 +104,21 @@ def main():
     # Create list of all XLS files to attach to the mail
     # Attach all files to mail and send it
     # TODO: Test Yagmail
+
+    # Create list of attachments to send
+    for root, dirs, files in os.walk(TXT_DIR):
+        for file in files:
+            if file.endswith(".xlsx"):
+                ATTACH_LIST.append(os.path.join(root, file))
+
     try:
         # initializing the server connection
         yag = yagmail.SMTP(user=s_mail, password=password)
         # sending the email
         yag.send(to=r_mail,
                  subject=subject,
-                 contents=mail_body)
+                 contents=mail_body,
+                 attachments=ATTACH_LIST)
         print("Email sent successfully")
     except:
         print("Error, email was not sent")
