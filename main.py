@@ -137,12 +137,28 @@ def validate_output_directory(txt_dir_p, class_path_p):
 
 # Reads the final mark of the student and writes general subject comments
 # to a text file depending on the mark achieved.
+# Two separate functions, one for home language, one for additional language with different criteria
 def gen_eng_fal(f_mark_p, txt_f_p, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p):
     if str(f_mark_p) == "A":
         txt_f_p.write("!!!NO FINAL MARK!!! - ")
     elif float(f_mark_p) < .4:
         txt_f_p.write(rand_line(FAIL_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
     elif float(f_mark_p) < .5:
+        txt_f_p.write(rand_line(CARE_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+    elif float(f_mark_p) < .6:
+        txt_f_p.write(rand_line(SATIS_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+    elif float(f_mark_p) < .8:
+        txt_f_p.write(rand_line(GOOD_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+    else:
+        txt_f_p.write(rand_line(EXCEL_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+
+
+def gen_eng_hl(f_mark_p, txt_f_p, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p):
+    if str(f_mark_p) == "A":
+        txt_f_p.write("!!!NO FINAL MARK!!! - ")
+    elif float(f_mark_p) < .5:
+        txt_f_p.write(rand_line(FAIL_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+    elif float(f_mark_p) < .55:
         txt_f_p.write(rand_line(CARE_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
     elif float(f_mark_p) < .6:
         txt_f_p.write(rand_line(SATIS_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
