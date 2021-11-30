@@ -25,6 +25,7 @@ from pathlib import Path
 import os
 import xlsxwriter
 import yagmail
+import shutil
 from creds import *  # Used for mail address and password
 
 
@@ -34,6 +35,7 @@ CWD = os.getcwd()
 CSV_DIR = CWD + r"\csv"
 TXT_DIR = CWD + r"\comment_output"
 COMMENT_DIR = CWD + r"\comment_input"
+ARCHIVE_DIR = CWD + r"\ARCHIVE"
 
 # File Variables
 FAIL_F = COMMENT_DIR + r"\1_fail.txt"
@@ -102,6 +104,11 @@ def main():
     # Create list of attachments to send and send the mail
     attachment_list()
     send_mail()
+
+    # Move contents of Comment Output to an Archive Folder
+    move_to_archive()    # dir_list = fast_scandir(TXT_DIR)
+    # for d in dir_list:
+    #     shutil.move(d, ARCHIVE_DIR)
 
 
 # Helper Functions
@@ -281,6 +288,22 @@ def send_mail():
         print("Email sent successfully")
     except:
         print("Error, email was not sent")
+
+
+# Function to return a list of all subfolders in comment_output folder
+def fast_scandir(dirname):
+    subfolders= [f.path for f in os.scandir(dirname) if f.is_dir()]
+    for dirname in list(subfolders):
+        subfolders.extend(fast_scandir(dirname))
+    return subfolders
+
+
+# Function to move Comment XLS files to an archive folder after the mail was sent
+def move_to_archive():
+    dir_list = fast_scandir(TXT_DIR)
+    for d in dir_list:
+        shutil.move(d, ARCHIVE_DIR)
+
 
 # Run main program
 if __name__ == "__main__":
