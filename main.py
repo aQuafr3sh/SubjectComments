@@ -19,7 +19,6 @@ Additional enhancements include:    - GUI
                                     - Email comments to user
                                     - Move processed files to "Archive" folder
 """
-# TODO: Email functionality
 import pandas as pd
 import random
 from pathlib import Path
@@ -100,17 +99,11 @@ def main():
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
-    # Test sending email
-    # Create list of all XLS files to attach to the mail
     # Attach all files to mail and send it
-    # TODO: Test Yagmail
-
     # Create list of attachments to send
-    for root, dirs, files in os.walk(TXT_DIR):
-        for file in files:
-            if file.endswith(".xlsx"):
-                ATTACH_LIST.append(os.path.join(root, file))
+    attachment_list()
 
+    # Send the email
     try:
         # initializing the server connection
         yag = yagmail.SMTP(user=s_mail, password=password)
@@ -278,6 +271,14 @@ def txt_to_xls(subname, subpath):
             os.remove(file)
         workbook.close()
         sub_index += 1
+
+
+# Function to create list of attachments to mail
+def attachment_list():
+    for root, dirs, files in os.walk(TXT_DIR):
+        for file in files:
+            if file.endswith(".xlsx"):
+                ATTACH_LIST.append(os.path.join(root, file))
 
 
 # Run main program
