@@ -1,17 +1,24 @@
 """
 Created by:    Philip van Schalkwyk
 Contact:       philiplvans@gmail.com
-Last updated:  2021-11-29
+Last updated:  2021-11-30
 
-This script is used to automatically generate subject comments for English
-first additional language students, based on:
+This script is used to automatically generate subject comments for English, based on:
     - Task Scores
     - Final quarter mark
     - Misc. comments such as additional reading required, or being a pleasure in class
-In this branch, we will attempt to use Pandas to read the CSV file
-"""
 
-# TODO: Query user for subject, if english, is it home or additional language? Use relevant Function
+A Pandas dataframe is created from a CSV file to generate the comments.
+Output is written to an XLS file.
+Templates will be created to display how the CSV file used as input is supposed to look.
+
+Further enhancements can make provision for other subjects, this can just be added to the check_sub function and
+a {subject} keyword can be added to the comment field.
+
+Additional enhancements include:    - GUI
+                                    - Email comments to user
+                                    - Move processed files to "Archive" folder
+"""
 
 import pandas as pd
 import random
@@ -68,9 +75,9 @@ def main():
                 his_her = pn_his_her(str(row.Sex).upper())
                 His_Her = pn_His_Her(str(row.Sex).upper())
 
-                # TODO: Parse filename to determine subject and level
-                # TODO: If statement to calc different % for FAL and HL
-                gen_eng_fal(row.FINAL, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
+                # Check if ENG is in the filename, if it is, continue to check for FAL and HL
+                # This leaves room to check for other subjects as well in the future
+                check_sub(class_path, row, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
 
                 # Create comments for failed assignments
                 fail_task(f_task, f_index, df, row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
@@ -87,10 +94,8 @@ def main():
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
+
 # Helper Functions
-# TODO:  Create function to parse Excel filename to determine subject
-
-
 # Function to create text file string
 def txt_file_string(txt_dir_p, class_path_p, surname_p, nickname_p, number_p):
     return str(f"{txt_dir_p}\\{class_path_p}\\{surname_p}_{nickname_p}_{number_p}.txt")
@@ -166,6 +171,15 @@ def gen_eng_hl(f_mark_p, txt_f_p, sname_p, he_she_p, He_She_p, him_her_p, his_he
         txt_f_p.write(rand_line(GOOD_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
     else:
         txt_f_p.write(rand_line(EXCEL_F, sname_p, he_she_p, He_She_p, him_her_p, his_her_p, His_Her_p, boy_girl_p))
+
+
+# Function to determine the subject, and if it is a language subject, whether it is Home Language or Additional Language
+def check_sub(class_path, row, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl):
+    if "ENG" in class_path.upper():
+        if "FAL" in class_path.upper():
+            gen_eng_fal(row.FINAL, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
+        elif "HL" in class_path.upper():
+            gen_eng_hl(row.FINAL, txt_f, sname, he_she, He_She, him_her, his_her, His_Her, boy_girl)
 
 
 # Function to determine whether student failed a task, writes output to file
