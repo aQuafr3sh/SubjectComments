@@ -102,13 +102,19 @@ def main():
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
-    # Create list of attachments to send and send the mail
-    attachment_list()
-    send_mail()
+    #TODO: Uncomment the following functions when merging into master:
+    #   - attachment_list
+    #   - send_mail
+    #   - move_to_archive
+    #   - csv_to archive
 
-    # Move contents of Comment Output and CSV to an Archive Folder
-    move_to_archive()
-    csv_to_archive()
+    # # Create list of attachments to send and send the mail
+    # attachment_list()
+    # send_mail()
+    #
+    # # Move contents of Comment Output and CSV to an Archive Folder
+    # move_to_archive()
+    # csv_to_archive()
 
 
 # Helper Functions
