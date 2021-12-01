@@ -19,6 +19,7 @@ Additional enhancements include:    - GUI
                                     - Email comments to user
                                     - Move processed files to "Archive" folder
 """
+# TODO: Change paths to / and test with pyinstaller
 import pandas as pd
 import random
 from pathlib import Path
@@ -32,23 +33,23 @@ from creds import *  # Used for mail address and password
 # Variables for all the different files and folders that will be used to read and write data
 # Set the current working directory to the folder in which the file is contained
 CWD = os.getcwd()
-CSV_DIR = CWD + r"\csv"
-TXT_DIR = CWD + r"\comment_output"
-COMMENT_DIR = CWD + r"\comment_input"
-ARCHIVE_DIR = CWD + r"\ARCHIVE"
-CSV_ARCHIVE_DIR = CSV_DIR + r"\ARCHIVE"
+CSV_DIR = CWD + "/csv"
+TXT_DIR = CWD + "/comment_output"
+COMMENT_DIR = CWD + "/comment_input"
+ARCHIVE_DIR = CWD + "/ARCHIVE"
+CSV_ARCHIVE_DIR = CSV_DIR + "/ARCHIVE"
 
 # File Variables
-FAIL_F = COMMENT_DIR + r"\1_fail.txt"
-CARE_F = COMMENT_DIR + r"\2_careful.txt"
-SATIS_F = COMMENT_DIR + r"\3_satisfactory.txt"
-GOOD_F = COMMENT_DIR + r"\4_good.txt"
-EXCEL_F = COMMENT_DIR + r"\5_excellent.txt"
-ASS_F = COMMENT_DIR + r"\6_assessmentfail.txt"
-PLEASURE_F = COMMENT_DIR + r"\7_pleasure.txt"
-ATT_F = COMMENT_DIR + r"\8_attention.txt"
-DISRUPT_F = COMMENT_DIR + r"\9_disrupt.txt"
-READ_F = COMMENT_DIR + r"\10_read.txt"
+FAIL_F = COMMENT_DIR + "/1_fail.txt"
+CARE_F = COMMENT_DIR + "/2_careful.txt"
+SATIS_F = COMMENT_DIR + "/3_satisfactory.txt"
+GOOD_F = COMMENT_DIR + "/4_good.txt"
+EXCEL_F = COMMENT_DIR + "/5_excellent.txt"
+ASS_F = COMMENT_DIR + "/6_assessmentfail.txt"
+PLEASURE_F = COMMENT_DIR + "/7_pleasure.txt"
+ATT_F = COMMENT_DIR + "/8_attention.txt"
+DISRUPT_F = COMMENT_DIR + "/9_disrupt.txt"
+READ_F = COMMENT_DIR + "/10_read.txt"
 
 # Mail Attachment List
 ATTACH_LIST = []
@@ -114,7 +115,7 @@ def main():
 # Helper Functions
 # Function to create text file string
 def txt_file_string(txt_dir_p, class_path_p, surname_p, nickname_p, number_p):
-    return str(f"{txt_dir_p}\\{class_path_p}\\{surname_p}_{nickname_p}_{number_p}.txt")
+    return str(f"{txt_dir_p}/{class_path_p}/{surname_p}_{nickname_p}_{number_p}.txt")
 
 
 # Several functions to output pronouns based on gender marked in spreadsheet
@@ -151,9 +152,9 @@ def csv_to_dataframe(csv_file_p):
 
 # Validate the existence of the output folders, if non-existent, create them
 def validate_output_directory(txt_dir_p, class_path_p):
-    if not os.path.exists(f"{txt_dir_p}\\{class_path_p}"):
-        os.mkdir(f"{txt_dir_p}\\{class_path_p}")
-        print(f"Created directory: {txt_dir_p}\\{class_path_p}")
+    if not os.path.exists(f"{txt_dir_p}/{class_path_p}"):
+        os.mkdir(f"{txt_dir_p}/{class_path_p}")
+        print(f"Created directory: {txt_dir_p}/{class_path_p}")
 
 
 # Reads the final mark of the student and writes general subject comments
@@ -253,7 +254,7 @@ def txt_to_xls(subname, subpath):
     while sub_index < len(subname):
         row = 0
         col = 0
-        workbook = xlsxwriter.Workbook(f"{subpath[sub_index]}\\{subname[sub_index]}.xlsx")
+        workbook = xlsxwriter.Workbook(f"{subpath[sub_index]}/{subname[sub_index]}.xlsx")
         worksheet = workbook.add_worksheet()
         worksheet.set_column("A:A", 40)
         worksheet.set_column("B:B", 200)
