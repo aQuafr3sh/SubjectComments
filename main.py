@@ -20,6 +20,7 @@ Additional enhancements include:    - GUI
                                     - Move processed files to "Archive" folder
 """
 # TODO: Change paths to / and test with pyinstaller
+# TODO: Investigate os.path module to join paths instead of string manipulation
 import pandas as pd
 import random
 from pathlib import Path
