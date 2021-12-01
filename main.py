@@ -36,6 +36,7 @@ CSV_DIR = CWD + r"\csv"
 TXT_DIR = CWD + r"\comment_output"
 COMMENT_DIR = CWD + r"\comment_input"
 ARCHIVE_DIR = CWD + r"\ARCHIVE"
+CSV_ARCHIVE_DIR = CSV_DIR + r"\ARCHIVE"
 
 # File Variables
 FAIL_F = COMMENT_DIR + r"\1_fail.txt"
@@ -105,10 +106,9 @@ def main():
     attachment_list()
     send_mail()
 
-    # Move contents of Comment Output to an Archive Folder
-    move_to_archive()    # dir_list = fast_scandir(TXT_DIR)
-    # for d in dir_list:
-    #     shutil.move(d, ARCHIVE_DIR)
+    # Move contents of Comment Output and CSV to an Archive Folder
+    move_to_archive()
+    csv_to_archive()
 
 
 # Helper Functions
@@ -303,6 +303,12 @@ def move_to_archive():
     dir_list = fast_scandir(TXT_DIR)
     for d in dir_list:
         shutil.move(d, ARCHIVE_DIR)
+
+
+# Move input CSV files to an Archive folder
+def csv_to_archive():
+    for file in Path(CSV_DIR).glob("*.csv"):
+        shutil.move(file, CSV_ARCHIVE_DIR)
 
 
 # Run main program
