@@ -26,8 +26,21 @@ import os
 import xlsxwriter
 import yagmail
 import shutil
+from tkinter import *
 from creds import *  # Used for mail address and password
 
+root = Tk()  # Tkinter root, must be added
+
+# Creating a label widget
+myLabel1 = Label(root, text="Hello World!")
+myLabel2 = Label(root, text="My naam is Philip")
+
+# Shoving label onto the screen
+myLabel1.grid(row=0, column=0)
+myLabel2.grid(row=1, column=1)
+
+# Create an event loop
+root.mainloop()
 
 # Variables for all the different files and folders that will be used to read and write data
 # Set the current working directory to the folder in which the file is contained
@@ -102,11 +115,11 @@ def main():
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
-    #TODO: Uncomment the following functions when merging into master:
-    #   - attachment_list
-    #   - send_mail
-    #   - move_to_archive
-    #   - csv_to archive
+    # TODO: Uncomment the following functions when merging into master:
+    #       - attachment_list
+    #       - send_mail
+    #       - move_to_archive
+    #       - csv_to archive
 
     # # Create list of attachments to send and send the mail
     # attachment_list()
