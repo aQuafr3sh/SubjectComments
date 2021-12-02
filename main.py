@@ -1,7 +1,7 @@
 """
 Created by:    Philip van Schalkwyk
 Contact:       philiplvans@gmail.com
-Last updated:  2021-11-30
+Last updated:  2021-12-02
 
 This script is used to automatically generate subject comments for English, based on:
     - Task Scores
@@ -33,10 +33,10 @@ from creds import *  # Used for mail address and password
 
 # Variables for all the different files and folders that will be used to read and write data
 # Set the current working directory to the folder in which the file is contained
-CWD = os.getcwd()
-CSV_DIR = os.path.join(CWD, "csv")
-TXT_DIR = os.path.join(CWD, "comment_output")
-COMMENT_DIR = os.path.join(CWD, "comment_input")
+CWD = os.path.join(os.getcwd(), "DATA")
+CSV_DIR = os.path.join(CWD, "CSV_FILES")
+OUT_DIR = os.path.join(CWD, "OUTPUT")
+COMMENT_DIR = os.path.join(CWD, "COMMENT_SOURCE")
 ARCHIVE_DIR = os.path.join(CWD, "ARCHIVE")
 CSV_ARCHIVE_DIR = os.path.join(CSV_DIR, "ARCHIVE")
 
@@ -70,11 +70,11 @@ def main():
         f_index = int(df.columns.get_loc("FINAL"))
 
         # Check whether output directory exists, create it if it does not exist
-        validate_output_directory(TXT_DIR, class_path)
+        validate_output_directory(OUT_DIR, class_path)
 
         # Iterate through the data in the Pandas dataframe and create subject comments based on specified criteria
         for row in df.itertuples(index=False):
-            txt_file_s = txt_file_string(TXT_DIR, class_path, row.Surname, row.Nickname, row.Number)
+            txt_file_s = txt_file_string(OUT_DIR, class_path, row.Surname, row.Nickname, row.Number)
             with open(txt_file_s, 'a+') as txt_f:
                 sname = row.Nickname
                 # Check gender of student and assign correct pronouns
@@ -100,8 +100,8 @@ def main():
                 read_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl)
 
     # Write outputs to an excel file and delete the intermediate TXT data
-    subfolder_name = [f.name for f in os.scandir(TXT_DIR) if f.is_dir()]
-    subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
+    subfolder_name = [f.name for f in os.scandir(OUT_DIR) if f.is_dir()]
+    subfolder_path = [f.path for f in os.scandir(OUT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
     # TODO: Uncomment before merging with master
@@ -156,7 +156,6 @@ def csv_to_dataframe(csv_file_p):
 def validate_output_directory(txt_dir_p, class_path_p):
     if not os.path.exists(f"{txt_dir_p}/{class_path_p}"):
         os.mkdir(f"{txt_dir_p}/{class_path_p}")
-        print(f"Created directory: {txt_dir_p}/{class_path_p}")
 
 
 # Reads the final mark of the student and writes general subject comments
@@ -272,7 +271,7 @@ def txt_to_xls(subname, subpath):
 
 # Function to create list of attachments to mail
 def attachment_list():
-    for root, dirs, files in os.walk(TXT_DIR):
+    for root, dirs, files in os.walk(OUT_DIR):
         for file in files:
             if file.endswith(".xlsx"):
                 ATTACH_LIST.append(os.path.join(root, file))
@@ -295,7 +294,7 @@ def send_mail():
 
 # Function to return a list of all subfolders in comment_output folder
 def fast_scandir(dirname):
-    subfolders= [f.path for f in os.scandir(dirname) if f.is_dir()]
+    subfolders = [f.path for f in os.scandir(dirname) if f.is_dir()]
     for dirname in list(subfolders):
         subfolders.extend(fast_scandir(dirname))
     return subfolders
@@ -303,7 +302,7 @@ def fast_scandir(dirname):
 
 # Function to move Comment XLS files to an archive folder after the mail was sent
 def move_to_archive():
-    dir_list = fast_scandir(TXT_DIR)
+    dir_list = fast_scandir(OUT_DIR)
     for d in dir_list:
         shutil.move(d, ARCHIVE_DIR)
 
@@ -317,19 +316,3 @@ def csv_to_archive():
 # Run main program
 if __name__ == "__main__":
     main()
-    # print(CWD)
-    # print(CSV_DIR)
-    # print(TXT_DIR)
-    # print(COMMENT_DIR)
-    # print(ARCHIVE_DIR)
-    # print(CSV_ARCHIVE_DIR)
-    # print(FAIL_F)
-    # print(CARE_F)
-    # print(SATIS_F)
-    # print(GOOD_F)
-    # print(EXCEL_F)
-    # print(ASS_F)
-    # print(PLEASURE_F)
-    # print(ATT_F)
-    # print(DISRUPT_F)
-    # print(READ_F)

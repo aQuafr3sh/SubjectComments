@@ -1,0 +1,5 @@
+s_mail = "enter sender email"
+r_mail = "enter receiver email"
+password = "Enter sender email Password"
+subject = "Enter email subject"
+mail_body = "Enter email message"
