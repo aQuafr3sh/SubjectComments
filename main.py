@@ -34,23 +34,23 @@ from creds import *  # Used for mail address and password
 # Variables for all the different files and folders that will be used to read and write data
 # Set the current working directory to the folder in which the file is contained
 CWD = os.getcwd()
-CSV_DIR = CWD + "/csv"
-TXT_DIR = CWD + "/comment_output"
-COMMENT_DIR = CWD + "/comment_input"
-ARCHIVE_DIR = CWD + "/ARCHIVE"
-CSV_ARCHIVE_DIR = CSV_DIR + "/ARCHIVE"
+CSV_DIR = os.path.join(CWD, "csv")
+TXT_DIR = os.path.join(CWD, "comment_output")
+COMMENT_DIR = os.path.join(CWD, "comment_input")
+ARCHIVE_DIR = os.path.join(CWD, "ARCHIVE")
+CSV_ARCHIVE_DIR = os.path.join(CSV_DIR, "ARCHIVE")
 
 # File Variables
-FAIL_F = COMMENT_DIR + "/1_fail.txt"
-CARE_F = COMMENT_DIR + "/2_careful.txt"
-SATIS_F = COMMENT_DIR + "/3_satisfactory.txt"
-GOOD_F = COMMENT_DIR + "/4_good.txt"
-EXCEL_F = COMMENT_DIR + "/5_excellent.txt"
-ASS_F = COMMENT_DIR + "/6_assessmentfail.txt"
-PLEASURE_F = COMMENT_DIR + "/7_pleasure.txt"
-ATT_F = COMMENT_DIR + "/8_attention.txt"
-DISRUPT_F = COMMENT_DIR + "/9_disrupt.txt"
-READ_F = COMMENT_DIR + "/10_read.txt"
+FAIL_F = os.path.join(COMMENT_DIR, "1_fail.txt")
+CARE_F = os.path.join(COMMENT_DIR, "2_careful.txt")
+SATIS_F = os.path.join(COMMENT_DIR, "3_satisfactory.txt")
+GOOD_F = os.path.join(COMMENT_DIR, "4_good.txt")
+EXCEL_F = os.path.join(COMMENT_DIR, "5_excellent.txt")
+ASS_F = os.path.join(COMMENT_DIR, "6_assessmentfail.txt")
+PLEASURE_F = os.path.join(COMMENT_DIR, "7_pleasure.txt")
+ATT_F = os.path.join(COMMENT_DIR, "8_attention.txt")
+DISRUPT_F = os.path.join(COMMENT_DIR, "9_disrupt.txt")
+READ_F = os.path.join(COMMENT_DIR, "10_read.txt")
 
 # Mail Attachment List
 ATTACH_LIST = []
@@ -104,13 +104,14 @@ def main():
     subfolder_path = [f.path for f in os.scandir(TXT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
-    # Create list of attachments to send and send the mail
-    attachment_list()
-    send_mail()
-
-    # Move contents of Comment Output and CSV to an Archive Folder
-    move_to_archive()
-    csv_to_archive()
+    # TODO: Uncomment before merging with master
+    # # Create list of attachments to send and send the mail
+    # attachment_list()
+    # send_mail()
+    #
+    # # Move contents of Comment Output and CSV to an Archive Folder
+    # move_to_archive()
+    # csv_to_archive()
 
 
 # Helper Functions
@@ -316,3 +317,19 @@ def csv_to_archive():
 # Run main program
 if __name__ == "__main__":
     main()
+    # print(CWD)
+    # print(CSV_DIR)
+    # print(TXT_DIR)
+    # print(COMMENT_DIR)
+    # print(ARCHIVE_DIR)
+    # print(CSV_ARCHIVE_DIR)
+    # print(FAIL_F)
+    # print(CARE_F)
+    # print(SATIS_F)
+    # print(GOOD_F)
+    # print(EXCEL_F)
+    # print(ASS_F)
+    # print(PLEASURE_F)
+    # print(ATT_F)
+    # print(DISRUPT_F)
+    # print(READ_F)
