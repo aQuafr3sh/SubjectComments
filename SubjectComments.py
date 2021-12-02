@@ -19,8 +19,6 @@ Additional enhancements include:    - GUI
                                     - Email comments to user
                                     - Move processed files to "Archive" folder
 """
-# TODO: Change paths to / and test with pyinstaller
-# TODO: Investigate os.path module to join paths instead of string manipulation
 import pandas as pd
 import random
 from pathlib import Path
@@ -104,7 +102,6 @@ def main():
     subfolder_path = [f.path for f in os.scandir(OUT_DIR) if f.is_dir()]
     txt_to_xls(subfolder_name, subfolder_path)
 
-    # TODO: Uncomment before merging with master
     # Create list of attachments to send and send the mail
     attachment_list()
     send_mail()
