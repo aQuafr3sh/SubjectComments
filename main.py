@@ -105,13 +105,13 @@ def main():
     txt_to_xls(subfolder_name, subfolder_path)
 
     # TODO: Uncomment before merging with master
-    # # Create list of attachments to send and send the mail
-    # attachment_list()
-    # send_mail()
-    #
-    # # Move contents of Comment Output and CSV to an Archive Folder
-    # move_to_archive()
-    # csv_to_archive()
+    # Create list of attachments to send and send the mail
+    attachment_list()
+    send_mail()
+
+    # Move contents of Comment Output and CSV to an Archive Folder
+    move_to_archive()
+    csv_to_archive()
 
 
 # Helper Functions
