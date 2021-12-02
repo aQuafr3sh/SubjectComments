@@ -1,0 +1,8 @@
+{He_She} does not pay enough attention during lessons. 
+{He_She} will benifit from paying more attention in class. 
+{He_She} is talkative at times, and should pay more attention in class. 
+{He_She} is talkative at times, and should pay more attention during lessons. 
+{He_She} does not concentrate enough during lessons. 
+{He_She} does not concentrate enough during in the class. 
+If {he_she} pays more attention in class, {he_she} can do much better. 
+If {he_she} pays more attention during lessons, {he_she} can do much better. 

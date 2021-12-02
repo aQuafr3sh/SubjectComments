@@ -1,0 +1,18 @@
+{sname} has failed English. 
+{sname} has unfortunately failed English. 
+It saddens me to say that {sname} did not pass English. 
+{sname} unfortunately did not pass English. 
+{sname} sadly did not pass English. 
+{sname} unfortunately did not pass English. 
+{sname} sadly did not pass English. 
+{sname} unfortunately did not meet the requirements to pass English. 
+{sname} sadly did not meet the requirements to pass English. 
+It saddens me to say that {sname} did meet the requirements to pass English. 
+{sname} is progressing below grade level for English. 
+{sname} must work harder in order to pass English. 
+{sname} is not making enough progress in English. Unless {he_she} improves considerably, {he_she} will not pass at the end of the year. 
+{sname} must work harder to pass English at the end of the year. 
+{sname} is not making enough progress in English. 
+{sname} must improve {his_her} English marks considerably in order to pass at the end of the year. 
+{sname} is working below {his_her} ability. {He_She} can do much better. Unfortunately {he_she} failed English. 
+{sname} does not concentrate enough in the classroom and has failed English. 

@@ -1,0 +1,7 @@
+{sname} passed English, but did not produce satisfactory marks. 
+{sname} passed English, but must work harder to produce better marks. 
+{sname} must work harder to avoid a failing grade in English in the next examinations. 
+{sname} must put in more effort to improve {his_her} English marks. {He_She} passed the subject this term. 
+{sname} must be careful that {his_her} English grades do not fall too low. {He_She} passed this term. 
+Although {sname} passed English this term, {he_she} must work harder to achieve better marks next term. 
+Although {sname} passed English this term, {he_she} must work harder to prevent a failing grade in the future. 

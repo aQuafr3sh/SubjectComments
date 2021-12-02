@@ -1,0 +1,42 @@
+{sname} achieved excellent marks in English. Well done! 
+{sname} achieved excellent marks in English. Keep it up! 
+{sname} achieved excellent marks in English. Keep up the excellent work! 
+{sname} achieved excellent marks in English. You are a star! 
+{sname} achieved excellent marks in English. Hard work pays off! 
+Excellent marks were achieved by {sname}, well done! 
+Excellent marks were achieved by {sname}, keep it up! 
+Excellent marks were achieved by {sname}, keep up the excellent work! 
+Excellent marks were achieved by {sname}, you are a star! 
+Excellent marks were achieved by {sname}, hard work pays off! 
+I am very impressed with {sname}'s excellent English marks. Well done! 
+I am very impressed with {sname}'s excellent English marks. Keep it up! 
+I am very impressed with {sname}'s excellent English marks. Keep up the excellent work! 
+I am very impressed with {sname}'s excellent English marks. You are a star! 
+I am very impressed with {sname}'s excellent English marks. Hard work pays off! 
+I am very pleased with {sname}'s excellent English marks. Well done! 
+I am very pleased with {sname}'s excellent English marks. Keep it up! 
+I am very pleased with {sname}'s excellent English marks. Keep up the excellent work! 
+I am very pleased with {sname}'s excellent English marks. You are a star! 
+I am very pleased with {sname}'s excellent English marks. Hard work pays off! 
+You can be very proud of {sname}'s excellent English marks. Well done! 
+You can be very proud of {sname}'s excellent English marks. Keep it up! 
+You can be very proud of {sname}'s excellent English marks. Hard work pays off! 
+{sname} has earned excellent marks in English and I am proud of {him_her} . Well done! 
+{sname} has earned excellent marks in English and I am proud of {him_her} . Keep it up! 
+{sname} has earned excellent marks in English and I am proud of {him_her} . Keep up the excellent work! 
+{sname} has earned excellent marks in English and I am proud of {him_her} . You are a star! 
+{sname} has earned excellent marks in English and I am proud of {him_her} . Hard work pays off! 
+Outstanding English results were produced by {sname}, keep it up! 
+Outstanding English results were produced by {sname}, well done! 
+Outstanding English results were produced by {sname}, keep up the excellent work! 
+Outstanding English results were produced by {sname}, hard work pays off! 
+{sname} did very well in English and produced excellent results. Well done! 
+{sname} did very well in English and produced excellent results. Keep it up! 
+{sname} did very well in English and produced excellent results. Keep up the excellent work! 
+{sname} did very well in English and produced excellent results. You are a star! 
+{sname} did very well in English and produced excellent results. Hard work pays off! 
+I am very proud of {sname}'s excellent English marks. Well done! 
+I am very proud of {sname}'s excellent English marks. Keep it up! 
+I am very proud of {sname}'s excellent English marks. Keep up the excellent work! 
+I am very proud of {sname}'s excellent English marks. You are a star! 
+I am very proud of {sname}'s excellent English marks. Hard work pays off! 
