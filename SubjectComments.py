@@ -228,7 +228,7 @@ def disrupt_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, bo
 
 def read_com(row, txt_f, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl):
     if str(row.Read).upper() == "X":
-        txt_f.write(rand_line(DISRUPT_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl))
+        txt_f.write(rand_line(READ_F, sname, he_she, He_She, his_her, His_Her, him_her, boy_girl))
 
 
 # Calls a random line from the chosen comment file.
