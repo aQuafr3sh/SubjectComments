@@ -1,7 +1,7 @@
 """
 Created by:    Philip van Schalkwyk
 Contact:       philiplvans@gmail.com
-Last updated:  2021-12-02
+Last updated:  2022-03-10
 
 This script is used to automatically generate subject comments for English, based on:
     - Task Scores
@@ -16,8 +16,7 @@ Further enhancements can make provision for other subjects, this can just be add
 a {subject} keyword can be added to the comment field.
 
 Additional enhancements include:    - GUI
-                                    - Email comments to user
-                                    - Move processed files to "Archive" folder
+
 """
 import pandas as pd
 import random
